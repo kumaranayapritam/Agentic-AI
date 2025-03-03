@@ -2,3 +2,7 @@ langchain
 langgraph
 langchain-groq
 streamlit
+langchain-community
+langchain-core
+langchain-openai
+faiss-cpu
