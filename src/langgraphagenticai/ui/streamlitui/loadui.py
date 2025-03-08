@@ -2,7 +2,7 @@ import streamlit as st
 import os
 from datetime import date
 
-#from langchain_core.messages import AImessage,HumanMessage
+from langchain_core.messages import AIMessage,HumanMessage
 from src.langgraphagenticai.ui.uiconfigfile import Config
 
 
@@ -11,13 +11,28 @@ class LoadStreamlitUI:
         self.config =  Config() # config
         self.user_controls = {}
 
+    def initialize_session(self):
+        return {
+        "current_step": "requirements",
+        "requirements": "",
+        "user_stories": "",
+        "po_feedback": "",
+        "generated_code": "",
+        "review_feedback": "",
+        "decision": None
+    }
+  
+
+
     def load_streamlit_ui(self):
         st.set_page_config(page_title= "🤖 " + self.config.get_page_title(), layout="wide")
         st.header("🤖 " + self.config.get_page_title())
         st.session_state.timeframe = ''
         st.session_state.IsFetchButtonClicked = False
         st.session_state.IsSDLC = False
-    
+        
+        
+
         with st.sidebar:
             # Get options from config
             llm_options = self.config.get_llm_options()
